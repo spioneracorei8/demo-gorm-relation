@@ -1,0 +1,36 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "created_by": "system",
+    "choices": [
+      {
+        "choice": "Paris",
+        "answer": "Paris",
+        "is_correct": true
+      },
+      {
+        "choice": "London",
+        "answer": "Paris",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "question": "Which planet is known as the Red Planet?",
+    "created_by": "system",
+    "choices": [
+      {
+        "choice": "Mars",
+        "answer": "Mars",
+        "is_correct": true,
+        "created_by": "system"
+      },
+      {
+        "choice": "Jupiter",
+        "answer": "Mars",
+        "is_correct": false,
+        "created_by": "system"
+      }
+    ]
+  }
+]
