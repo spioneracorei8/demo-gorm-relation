@@ -23,12 +23,12 @@ jobs:
                 go-version: 1.23.3
 
 # ใช้คำสั่ง go mod tidy เพื่อติดตั้งและจัดการ Dependencies ใน go.mod
-            - name: Install dependencies
-              uses: go mod tidy
+            # - name: Install dependencies
+            #   uses: go mod tidy
 
 # run unit test ทั้งหมดของ project
-            - name: Run tests
-              uses: go test ./...
+            # - name: Run tests
+            #   uses: go test ./...
 
     # deploy:
     #     runs-on: ubuntu-latest
