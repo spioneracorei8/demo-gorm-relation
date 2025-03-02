@@ -1,0 +1,48 @@
+name: Go CI
+
+on: [main]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+    
+        steps:
+# ใช้ Action actions/checkout@v3 เพื่อดึงโค้ดจาก GitHub Repository
+# เปรียบเสมือนการใช้คำสั่ง (git clone <url>)
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+# ใช้ Action actions/setup-go@v5 เพื่อติดตั้ง Go เวอร์ชัน 1.23.3
+# เปรียบเสมือนการติดตั้ง Go บนเครื่อง Linux ด้วยคำสั่ง (sudo apt update && sudo apt install golang-1.23.3)
+            - name: Set up golang by version 1.23.3
+              uses: actions/setup-go@v5
+              with: 
+                go-version: 1.23.3
+
+# ใช้คำสั่ง go mod tidy เพื่อติดตั้งและจัดการ Dependencies ใน go.mod
+            - name: Install dependencies
+              uses: go mod tidy
+
+# run unit test ทั้งหมดของ project
+            - name: Run tests
+              uses: go test ./...
+
+    # deploy:
+    #     runs-on: ubuntu-latest
+    #     needs: test  # ทำ Deploy เมื่อ Test ผ่านแล้ว
+
+    #     steps:
+    #         - name: Checkout code
+    #           uses: actions/checkout@v3
+
+    #         - name: Deploy to Server
+    #           uses: appleboy/ssh-action@master
+    #           with:
+    #             host: ${{ secrets.SSH_HOST }}   # IP หรือโดเมนของ Server
+    #             username: ${{ secrets.SSH_USER }}  # Username SSH
+    #             key: ${{ secrets.SSH_PRIVATE_KEY }}  # Private Key
+    #             script: |
+    #               cd /home/user/app  # ไปยังโฟลเดอร์โปรเจกต์
+    #               git pull origin main  # ดึงโค้ดล่าสุด
+    #               go build -o app  # คอมไพล์แอป Go
+    #               sudo systemctl restart myapp  # รีสตาร์ท Service
